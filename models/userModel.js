@@ -74,3 +74,9 @@ exports.generateResetToken = (user) => {
 
     return token;
 };
+
+
+exports.findMembers = async (email) => {
+    const user = await userModel.findOne({ email: { $regex: `^${email}@`, $options: 'i' }, isDeleted: false });
+    return user;
+  };
